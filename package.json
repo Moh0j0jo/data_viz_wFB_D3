@@ -1,0 +1,28 @@
+{
+  "name": "data_viz_wfb_d3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Moh0j0jo/data_viz_wFB_D3.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Moh0j0jo/data_viz_wFB_D3/issues"
+  },
+  "homepage": "https://github.com/Moh0j0jo/data_viz_wFB_D3#readme",
+  "devDependencies": {
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "firebase": "^10.1.0"
+  }
+}
