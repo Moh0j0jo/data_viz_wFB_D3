@@ -1,4 +1,5 @@
 import { onSnapshot } from "@firebase/firestore";
+import * as d3 from "d3";
 
 const dims = { height: 300, width: 300, radius: 150 };
 const cent = { x: (dims.width / 2 + 5), y: (dims.height / 2 + 5)};
@@ -38,7 +39,7 @@ const legend = d3.legendColor()
 
 // update function
 const update = (data) => {
-
+  console.log(data)
   // update colour scale domain
   colour.domain(data.map(d => d.name));
 
@@ -100,6 +101,7 @@ const unsub = onSnapshot(colRef, (snapshot)  => {
   
   // call the update function
   update(data);
+  
 });
 
 const arcTweenEnter = (d) => {
@@ -133,8 +135,5 @@ function arcTweenUpdate(d) {
     return arcPath(i(t));
   };
 };
-
-
-
 
 

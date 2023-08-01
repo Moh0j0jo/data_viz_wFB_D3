@@ -2,18 +2,19 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs, addDoc } from 'firebase/firestore';
 import { onSnapshot } from "@firebase/firestore";
 import * as d3 from "d3";
+import { legendColor } from 'd3-svg-legend'
+
 
 // TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDMw--Z3Zl-e-y1TUnXMmghE5Dd7Gl5ChE",
-  authDomain: "udemy-d3-firebase-23286.firebaseapp.com",
-  projectId: "udemy-d3-firebase-23286",
-  storageBucket: "udemy-d3-firebase-23286.appspot.com",
-  messagingSenderId: "124615150939",
-  appId: "1:124615150939:web:2408f5cbfdc3b3b9a1de7e",
-  measurementId: "G-F3K0M89R9G"
+  apiKey: "AIzaSyBd3qu-NGBxA0qnQhVC2bs0rjmdP7sYi1w",
+  authDomain: "udemy-practice-e0102.firebaseapp.com",
+  projectId: "udemy-practice-e0102",
+  storageBucket: "udemy-practice-e0102.appspot.com",
+  messagingSenderId: "145692816151",
+  appId: "1:145692816151:web:e75328324d02dd9a21fd52",
+  measurementId: "G-7M6DXMV50F"
 };
-
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -36,7 +37,7 @@ form.addEventListener('submit', (e) => {
     };
 
     addDoc(colRef, item)
-      .then((res) => {
+      .then( res => {
         error.textContent = '';
         name.value = '';
         cost.value = '';
@@ -48,6 +49,7 @@ form.addEventListener('submit', (e) => {
   }
 
 });
+
 
 const dims = { height: 300, width: 300, radius: 150 };
 const cent = { x: (dims.width / 2 + 5), y: (dims.height / 2 + 5)};
@@ -79,7 +81,7 @@ const colour = d3.scaleOrdinal(d3["schemeSet3"]);
 const legendGroup = svg.append('g')
   .attr('transform', `translate(${dims.width + 40}, 10)`)
 
-const legend = d3.legendColor()
+const legend = legendColor()
   .shape('path', d3.symbol().type(d3.symbolCircle)())
   .shapePadding(10)
   .scale(colour)
@@ -87,7 +89,6 @@ const legend = d3.legendColor()
 
 // update function
 const update = (data) => {
-
   // update colour scale domain
   colour.domain(data.map(d => d.name));
 
@@ -149,6 +150,7 @@ const unsub = onSnapshot(colRef, (snapshot)  => {
   
   // call the update function
   update(data);
+  
 });
 
 const arcTweenEnter = (d) => {
@@ -182,5 +184,4 @@ function arcTweenUpdate(d) {
     return arcPath(i(t));
   };
 };
-
 
